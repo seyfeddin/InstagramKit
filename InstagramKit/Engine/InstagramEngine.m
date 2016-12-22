@@ -136,17 +136,7 @@
 - (BOOL)validAccessTokenFromURL:(NSURL *)url
                 appRedirectPath:(NSString *)appRedirectPath
                           error:(NSError *__autoreleasing *)error
-{
-    NSURL *appRedirectURL = [NSURL URLWithString:appRedirectPath];
-    
-    BOOL identicalURLSchemes = [appRedirectURL.scheme isEqual:url.scheme];
-    BOOL identicalURLHosts = [appRedirectURL.host isEqual:url.host];
-    // For app:// base URL, the host is nil.
-    BOOL isAppURL = (BOOL)(appRedirectURL.host == nil);
-    if (!identicalURLSchemes || (!isAppURL && !identicalURLHosts)) {
-        return NO;
-    }
-    
+{    
     NSString *formattedURL = nil;
     // For app:// base url the fragment is nil
     if (url.fragment) {
